@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BarChart3, CalendarDays, Check, Crown, FileText, Headphones, Layers3, Menu, Monitor, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, Check, CircleHelp, Crown, FileText, Headphones, Layers3, Menu, MessageCircleMore, Monitor, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,6 +32,19 @@ const benefits = [
   { icon: FileText, title: "No Hidden Fees", text: "Transparent pricing always." },
   { icon: CalendarDays, title: "Flexible Plans", text: "Monthly or yearly options." },
   { icon: ShieldCheck, title: "Ongoing Support", text: "We’re with you even after launch." },
+];
+
+const faqs = [
+  { question: "What core services does Anni Web Solutions provide?", answer: "We build business websites, custom web applications, AI automations, digital marketing systems, and ongoing support solutions." },
+  { question: "How can your AI & Automation services benefit my business?", answer: "We automate repetitive work, connect your tools, and create practical AI workflows that save time and improve customer response." },
+  { question: "What is included in your Digital Marketing services?", answer: "Our plans can include SEO, paid campaigns, content strategy, analytics, lead generation, and conversion-focused reporting." },
+  { question: "Do you handle complete Social Media Management & Growth?", answer: "Yes. We can manage planning, design, publishing, community engagement, paid promotion, and monthly performance reviews." },
+  { question: "What kind of Video Editing & Media Creation do you offer?", answer: "We create short-form social videos, ads, product edits, corporate films, motion graphics, and campaign-ready visual content." },
+  { question: "Can you help design a new Brand Identity for our company?", answer: "Yes. We create a cohesive visual identity including logo direction, colors, typography, brand guidelines, and launch assets." },
+  { question: "How long does it take to deliver a project?", answer: "A standard website usually takes two to four weeks. Complex applications and automation projects are scheduled after discovery." },
+  { question: "Will my website show up on Google, Google Analytics, and ChatGPT AI Search?", answer: "We provide technical SEO, analytics setup, structured content, and search-friendly foundations for traditional and AI-assisted discovery." },
+  { question: "Who owns the source code, media assets, and designs?", answer: "You receive ownership of the approved final code and project assets after all agreed payments are complete." },
+  { question: "What is the difference between your Custom and Prebuilt solutions?", answer: "Prebuilt solutions are faster and budget-friendly, while custom solutions are designed around your exact workflows, branding, and growth needs." },
 ];
 
 function Index() {
@@ -103,6 +117,39 @@ function Index() {
         <div className="mt-9 grid overflow-hidden rounded-2xl bg-background/80 shadow-sm sm:grid-cols-2 xl:grid-cols-[1.55fr_.8fr_.8fr_.9fr_auto]">
           {benefits.map((benefit, index) => { const Icon = benefit.icon; return <div key={benefit.title} className={`flex items-center gap-4 px-5 py-5 ${index > 0 ? "border-t border-line sm:border-l sm:border-t-0" : ""}`}><span className="grid size-12 shrink-0 place-items-center rounded-full border border-line bg-background text-brand"><Icon className="size-6"/></span><div><h3 className="text-[13px] font-extrabold">{benefit.title}</h3><p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{benefit.text}</p></div></div> })}
           <div className="flex items-center justify-center border-t border-line p-5 sm:col-span-2 xl:col-span-1 xl:border-l xl:border-t-0"><Button variant="brand" className="h-11 whitespace-nowrap px-5 text-xs" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button></div>
+        </div>
+      </section>
+
+      <section id="faq" className="border-t border-line/70 bg-background/55 px-4 py-14 sm:px-8 lg:px-16 lg:py-16">
+        <div className="mx-auto max-w-[1408px]">
+          <div className="relative text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold text-bronze"><CircleHelp className="size-4"/> Common Inquiries</div>
+            <div className="hand-note absolute left-3 top-7 hidden -rotate-6 text-left text-[24px] leading-[.9] xl:block">Your<br/>Questions<br/>Our Answers<span className="mt-3 block h-px w-24 -rotate-6 bg-foreground"/></div>
+            <div className="hand-note absolute right-4 top-7 hidden rotate-6 text-left text-[24px] leading-[.9] xl:block">Let’s<br/>Build<br/>Together<span className="mt-3 block h-px w-20 -rotate-6 bg-foreground"/></div>
+            <h2 className="mt-4 text-[31px] font-extrabold leading-tight sm:text-[40px] lg:text-[43px]">Frequently Asked <span className="text-bronze">Questions</span></h2>
+            <p className="mx-auto mt-2 max-w-3xl text-sm text-muted-foreground sm:text-base">Everything you need to know about our services, process, ownership, and support.</p>
+          </div>
+
+          <Accordion type="multiple" className="mt-8 grid items-start gap-3 lg:grid-cols-2 lg:gap-x-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={faq.question} value={`faq-${index}`} className="overflow-hidden rounded-xl border border-line bg-background/70 px-5 data-[state=open]:border-brand/40">
+                <AccordionTrigger className="min-h-[68px] gap-4 py-3 text-left hover:no-underline [&>svg]:size-4 [&>svg]:rounded-full [&>svg]:bg-secondary [&>svg]:p-1.5 [&>svg]:box-content">
+                  <span className="flex min-w-0 items-center gap-4">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-soft text-sm font-semibold text-brand">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="text-[14px] font-bold leading-snug sm:text-base">{faq.question}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="pl-14 pr-10 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+          <div className="mt-9 grid items-center gap-5 rounded-2xl bg-brand-soft/45 px-5 py-5 sm:px-8 lg:grid-cols-[1fr_auto_auto]">
+            <div className="flex min-w-0 items-center gap-5"><span className="grid size-16 shrink-0 place-items-center rounded-full bg-brand text-primary-foreground"><MessageCircleMore className="size-7"/></span><div><h3 className="text-lg font-extrabold">Still have questions?</h3><p className="mt-1 text-sm text-muted-foreground">We’re here to help. Talk to our team and get all the details you need.</p></div></div>
+            <Button variant="brand" className="h-12 px-7 font-semibold" asChild><a href="mailto:hello@anniweb.com?subject=Free consultation">Get a Free Consultation <ArrowRight /></a></Button>
+            <div className="flex items-center gap-3 border-t border-brand/30 pt-4 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0"><div className="flex -space-x-2"><span className="grid size-10 place-items-center rounded-full border-2 border-background bg-bronze text-xs font-bold text-primary-foreground">A</span><span className="grid size-10 place-items-center rounded-full border-2 border-background bg-brand text-xs font-bold text-primary-foreground">S</span><span className="grid size-10 place-items-center rounded-full border-2 border-background bg-muted text-xs font-bold text-brand">R</span></div><p className="text-sm leading-tight">Trusted by<br/><strong>100+ Businesses</strong></p></div>
+          </div>
+          <div className="mt-8 flex items-center gap-4 text-[10px] text-muted-foreground"><span className="h-px w-10 bg-bronze"/> Ideas&nbsp; | &nbsp;Technology&nbsp; | &nbsp;Real Impact</div>
         </div>
       </section>
     </main>
