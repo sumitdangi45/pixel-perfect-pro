@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, BarChart3, CalendarDays, Check, CircleHelp, Crown, FileText, Headphones, Layers3, Menu, MessageCircleMore, Monitor, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, Check, CircleHelp, Crown, FileText, Github, Headphones, Instagram, Layers3, Linkedin, Mail, Menu, MessageCircle, MessageCircleMore, Monitor, Phone, Send, Shield, ShieldCheck, Twitter, Users, X, Youtube, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -51,6 +51,7 @@ function Index() {
   const [billing, setBilling] = useState<Billing>("monthly");
   const [currency, setCurrency] = useState<Currency>("inr");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
 
   const displayPrice = (price: number) => {
     const billedPrice = billing === "yearly" ? Math.round(price * 10 / 12) : price;
@@ -151,6 +152,67 @@ function Index() {
           </div>
           <div className="mt-8 flex items-center gap-4 text-[10px] text-muted-foreground"><span className="h-px w-10 bg-bronze"/> Ideas&nbsp; | &nbsp;Technology&nbsp; | &nbsp;Real Impact</div>
         </div>
+      </section>
+
+      <section id="contact" className="border-t border-line bg-background/70">
+        <div className="relative mx-auto max-w-[1408px] px-4 py-12 text-center sm:px-8 lg:px-16 lg:py-14">
+          <div className="hand-note absolute left-3 top-20 hidden -rotate-6 text-left text-[24px] leading-[.9] xl:block">Ideas<br/>Into<br/>Real Solutions<span className="mt-3 block h-px w-28 -rotate-6 bg-foreground"/></div>
+          <div className="hand-note absolute right-4 top-24 hidden rotate-6 text-left text-[24px] leading-[.9] xl:block">Start<br/>Your Project<br/>Today<span className="mt-3 block h-px w-24 -rotate-6 bg-foreground"/></div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold"><Send className="size-4 text-bronze"/> Get In Touch</div>
+          <h2 className="mx-auto mt-4 max-w-4xl text-[31px] font-extrabold leading-tight sm:text-[40px] lg:text-[43px]">Let’s build something <span className="text-bronze">great together</span></h2>
+          <p className="mx-auto mt-3 max-w-[670px] text-sm leading-relaxed text-muted-foreground sm:text-base">Have a project in mind or need a custom solution? Reach out to us,<br className="hidden sm:block"/> and we’ll help you bring your vision to life.</p>
+
+          <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <Button variant="brand" className="h-12 rounded-full px-8 font-bold" asChild><a href="mailto:hello@anniweb.com"><Mail/> Email Us</a></Button>
+            <Button variant="outline" className="h-12 rounded-full px-8 font-bold" asChild><a href="https://wa.me/917554601839" target="_blank" rel="noreferrer"><MessageCircle className="text-brand"/> Chat on WhatsApp</a></Button>
+            <Button variant="outline" className="h-12 rounded-full px-8 font-bold" asChild><a href="tel:+917554601839"><Phone/> Call: +91 755-4601839</a></Button>
+          </div>
+
+          <div className="mx-auto mt-10 grid max-w-[890px] gap-5 text-left sm:grid-cols-3 sm:gap-0">
+            <div className="flex items-center gap-4 sm:pr-7"><span className="grid size-14 shrink-0 place-items-center rounded-full bg-secondary text-bronze"><Zap className="size-7 fill-current"/></span><div><h3 className="text-sm font-extrabold">Quick Response</h3><p className="mt-1 text-xs text-muted-foreground">We reply within 24 hours</p></div></div>
+            <div className="flex items-center gap-4 border-line sm:border-l sm:px-7"><span className="grid size-14 shrink-0 place-items-center rounded-full bg-secondary text-bronze"><Shield className="size-7"/></span><div><h3 className="text-sm font-extrabold">Free Consultation</h3><p className="mt-1 text-xs text-muted-foreground">Discuss your ideas with us</p></div></div>
+            <div className="flex items-center gap-4 border-line sm:border-l sm:pl-7"><span className="grid size-14 shrink-0 place-items-center rounded-full bg-secondary text-bronze"><Users className="size-7"/></span><div><h3 className="text-sm font-extrabold">Let’s Grow Together</h3><p className="mt-1 text-xs text-muted-foreground">Your vision, our expertise</p></div></div>
+          </div>
+        </div>
+
+        <footer className="border-t border-line bg-background px-4 pb-5 pt-9 sm:px-8 lg:px-16">
+          <div className="mx-auto max-w-[1408px]">
+            <div className="grid gap-9 md:grid-cols-2 xl:grid-cols-[1.25fr_.65fr_.8fr_1.35fr] xl:gap-16">
+              <div>
+                <a href="#home" className="flex items-center gap-3" aria-label="Anni home">
+                  <span className="relative h-11 w-9 shrink-0" aria-hidden="true"><span className="absolute left-1 top-0 h-11 w-[9px] rotate-[22deg] rounded-full bg-brand"/><span className="absolute right-1 top-0 h-11 w-[9px] -rotate-[22deg] rounded-full bg-brand-deep"/><span className="absolute bottom-1 left-[14px] h-2 w-2 rounded-full bg-bronze"/></span>
+                  <span className="leading-none"><strong className="block text-[25px] font-extrabold">Anni</strong><small className="mt-1 block text-[8px] font-extrabold">WEB SOLUTIONS PVT. LTD.</small></span>
+                </a>
+                <p className="mt-4 max-w-[310px] text-sm leading-relaxed text-muted-foreground">Building modern web, mobile and AI solutions that help businesses grow and create real impact.</p>
+                <div className="mt-4 flex gap-3">
+                  {[
+                    { label: "LinkedIn", icon: Linkedin }, { label: "Instagram", icon: Instagram }, { label: "YouTube", icon: Youtube }, { label: "X", icon: Twitter }, { label: "GitHub", icon: Github },
+                  ].map(({ label, icon: Icon }) => <Button key={label} variant="secondary" size="icon" className="rounded-full" aria-label={label} asChild><a href={`https://${label.toLowerCase()}.com`} target="_blank" rel="noreferrer"><Icon className="size-4"/></a></Button>)}
+                </div>
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold">Quick Links</h3>
+                <nav className="mt-3 grid gap-2 text-sm text-muted-foreground">{["Home", "About", "Services", "Projects", "Blog", "Contact"].map((item) => <a key={item} href={item === "Home" ? "#home" : `#${item.toLowerCase()}`} className="w-fit hover:text-brand">{item}</a>)}</nav>
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold">Our Services</h3>
+                <div className="mt-3 grid gap-2 text-sm text-muted-foreground"><span>Custom Development</span><span>AI &amp; Automation</span><span>Digital Marketing</span><span>UI/UX Design</span><span>Video &amp; Media</span><span>Branding</span></div>
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold">Subscribe to Our Newsletter</h3>
+                <p className="mt-3 max-w-[360px] text-sm leading-relaxed text-muted-foreground">Get the latest updates, tech insights and company news.</p>
+                <form className="mt-3 flex gap-2" onSubmit={(event) => { event.preventDefault(); window.location.href = `mailto:hello@anniweb.com?subject=Newsletter subscription&body=${encodeURIComponent(newsletterEmail)}`; }}>
+                  <label className="flex min-w-0 flex-1 items-center gap-3 rounded-md border border-input bg-background px-4 shadow-sm"><Mail className="size-4 shrink-0"/><span className="sr-only">Email address</span><input type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="Enter your email" className="h-11 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"/></label>
+                  <Button variant="brand" type="submit" className="h-11 px-5 font-bold">Subscribe</Button>
+                </form>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 border-t border-line pt-4 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+              <p>© 2024 Anni Web Solutions Pvt. Ltd. All rights reserved.</p>
+              <div className="flex flex-wrap gap-2"><a href="#contact">Privacy Policy</a><span>|</span><a href="#contact">Terms &amp; Conditions</a><span>|</span><a href="#home">Sitemap</a></div>
+            </div>
+          </div>
+        </footer>
       </section>
     </main>
   );
