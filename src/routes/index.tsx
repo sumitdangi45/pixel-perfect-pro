@@ -62,20 +62,20 @@ function Index() {
   const navItems = ["Home", "About", "Services", "Projects", "Why Us", "Blog", "Contact"];
 
   return (
-    <main className="page-glow min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="page-glow min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="border-b border-line bg-background/80 backdrop-blur-sm">
-        <div className="mx-auto grid h-[78px] max-w-[1408px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[230px_1fr_230px] lg:px-16">
+        <div className="mx-auto grid h-[78px] max-w-[1408px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:grid-cols-[180px_minmax(0,1fr)_180px] lg:px-8 xl:grid-cols-[230px_minmax(0,1fr)_230px] xl:px-16">
           <a href="#home" className="flex min-w-0 items-center gap-3" aria-label="Anni home">
             <span className="relative h-11 w-9 shrink-0" aria-hidden="true"><span className="absolute left-1 top-0 h-11 w-[9px] rotate-[22deg] rounded-full bg-brand"/><span className="absolute right-1 top-0 h-11 w-[9px] -rotate-[22deg] rounded-full bg-brand-deep"/><span className="absolute bottom-1 left-[14px] h-2 w-2 rounded-full bg-bronze"/></span>
             <span className="min-w-0 leading-none"><strong className="block truncate text-[25px] font-extrabold">Anni</strong><small className="mt-1 block truncate text-[8px] font-extrabold">WEB SOLUTIONS PVT. LTD.</small></span>
           </a>
-          <nav className="hidden items-center justify-center gap-11 lg:flex" aria-label="Main navigation">
+          <nav className="hidden min-w-0 items-center justify-center gap-5 lg:flex xl:gap-10" aria-label="Main navigation">
             {navItems.map((item, i) => <a key={item} href={i === 0 ? "#home" : `#${item.toLowerCase().replace(" ", "-")}`} className={`relative py-7 text-[13px] font-medium transition-colors hover:text-brand ${i === 0 ? "font-bold text-brand after:absolute after:bottom-[-1px] after:left-1/2 after:h-0.5 after:w-5 after:-translate-x-1/2 after:bg-brand" : ""}`}>{item}</a>)}
           </nav>
-          <Button variant="brand" className="hidden h-12 justify-self-end px-6 font-bold lg:inline-flex" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button>
+          <Button variant="brand" className="hidden h-12 justify-self-end px-4 font-bold lg:inline-flex xl:px-6" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button>
           <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X /> : <Menu />}</Button>
         </div>
-        {menuOpen && <nav className="grid border-t border-line bg-background px-5 py-3 lg:hidden">{navItems.map((item) => <a key={item} href="#home" onClick={() => setMenuOpen(false)} className="border-b border-line py-3 text-sm font-semibold last:border-0">{item}</a>)}<Button variant="brand" className="mt-3" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button></nav>}
+        {menuOpen && <nav className="grid border-t border-line bg-background px-5 py-3 lg:hidden">{navItems.map((item, index) => <a key={item} href={index === 0 ? "#home" : `#${item.toLowerCase().replace(" ", "-")}`} onClick={() => setMenuOpen(false)} className="border-b border-line py-3 text-sm font-semibold last:border-0">{item}</a>)}<Button variant="brand" className="mt-3" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button></nav>}
       </header>
 
       <section id="home" className="mx-auto max-w-[1408px] px-4 pb-7 pt-4 sm:px-8 lg:px-16">
@@ -116,7 +116,7 @@ function Index() {
         </div>
 
         <div className="mt-9 grid overflow-hidden rounded-2xl bg-background/80 shadow-sm sm:grid-cols-2 xl:grid-cols-[1.55fr_.8fr_.8fr_.9fr_auto]">
-          {benefits.map((benefit, index) => { const Icon = benefit.icon; return <div key={benefit.title} className={`flex items-center gap-4 px-5 py-5 ${index > 0 ? "border-t border-line sm:border-l sm:border-t-0" : ""}`}><span className="grid size-12 shrink-0 place-items-center rounded-full border border-line bg-background text-brand"><Icon className="size-6"/></span><div><h3 className="text-[13px] font-extrabold">{benefit.title}</h3><p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{benefit.text}</p></div></div> })}
+          {benefits.map((benefit, index) => { const Icon = benefit.icon; const divider = ["", "border-t sm:border-l sm:border-t-0", "border-t sm:border-t xl:border-l xl:border-t-0", "border-t sm:border-l xl:border-t-0"][index]; return <div key={benefit.title} className={`flex min-w-0 items-center gap-4 border-line px-5 py-5 ${divider}`}><span className="grid size-12 shrink-0 place-items-center rounded-full border border-line bg-background text-brand"><Icon className="size-6"/></span><div className="min-w-0"><h3 className="text-[13px] font-extrabold">{benefit.title}</h3><p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">{benefit.text}</p></div></div> })}
           <div className="flex items-center justify-center border-t border-line p-5 sm:col-span-2 xl:col-span-1 xl:border-l xl:border-t-0"><Button variant="brand" className="h-11 whitespace-nowrap px-5 text-xs" asChild><a href="mailto:hello@anniweb.com">Get a Free Quote <ArrowRight /></a></Button></div>
         </div>
       </section>
@@ -140,7 +140,7 @@ function Index() {
                     <span className="text-[14px] font-bold leading-snug sm:text-base">{faq.question}</span>
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pl-14 pr-10 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{faq.answer}</AccordionContent>
+                <AccordionContent className="pl-4 pr-4 text-[13px] leading-relaxed text-muted-foreground sm:pl-14 sm:pr-10 sm:text-sm">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -177,8 +177,8 @@ function Index() {
 
         <footer className="border-t border-line bg-background px-4 pb-5 pt-9 sm:px-8 lg:px-16">
           <div className="mx-auto max-w-[1408px]">
-            <div className="grid gap-9 md:grid-cols-2 xl:grid-cols-[1.25fr_.65fr_.8fr_1.35fr] xl:gap-16">
-              <div>
+            <div className="grid min-w-0 gap-9 md:grid-cols-2 xl:grid-cols-[1.25fr_.65fr_.8fr_1.35fr] xl:gap-16">
+              <div className="min-w-0">
                 <a href="#home" className="flex items-center gap-3" aria-label="Anni home">
                   <span className="relative h-11 w-9 shrink-0" aria-hidden="true"><span className="absolute left-1 top-0 h-11 w-[9px] rotate-[22deg] rounded-full bg-brand"/><span className="absolute right-1 top-0 h-11 w-[9px] -rotate-[22deg] rounded-full bg-brand-deep"/><span className="absolute bottom-1 left-[14px] h-2 w-2 rounded-full bg-bronze"/></span>
                   <span className="leading-none"><strong className="block text-[25px] font-extrabold">Anni</strong><small className="mt-1 block text-[8px] font-extrabold">WEB SOLUTIONS PVT. LTD.</small></span>
@@ -190,20 +190,20 @@ function Index() {
                   ].map(({ label, icon: Icon }) => <Button key={label} variant="secondary" size="icon" className="rounded-full" aria-label={label} asChild><a href={`https://${label.toLowerCase()}.com`} target="_blank" rel="noreferrer"><Icon className="size-4"/></a></Button>)}
                 </div>
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="text-sm font-extrabold">Quick Links</h3>
                 <nav className="mt-3 grid gap-2 text-sm text-muted-foreground">{["Home", "About", "Services", "Projects", "Blog", "Contact"].map((item) => <a key={item} href={item === "Home" ? "#home" : `#${item.toLowerCase()}`} className="w-fit hover:text-brand">{item}</a>)}</nav>
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="text-sm font-extrabold">Our Services</h3>
                 <div className="mt-3 grid gap-2 text-sm text-muted-foreground"><span>Custom Development</span><span>AI &amp; Automation</span><span>Digital Marketing</span><span>UI/UX Design</span><span>Video &amp; Media</span><span>Branding</span></div>
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="text-sm font-extrabold">Subscribe to Our Newsletter</h3>
                 <p className="mt-3 max-w-[360px] text-sm leading-relaxed text-muted-foreground">Get the latest updates, tech insights and company news.</p>
-                <form className="mt-3 flex gap-2" onSubmit={(event) => { event.preventDefault(); window.location.href = `mailto:hello@anniweb.com?subject=Newsletter subscription&body=${encodeURIComponent(newsletterEmail)}`; }}>
+                <form className="mt-3 grid min-w-0 gap-2 min-[360px]:grid-cols-[minmax(0,1fr)_auto]" onSubmit={(event) => { event.preventDefault(); window.location.href = `mailto:hello@anniweb.com?subject=Newsletter subscription&body=${encodeURIComponent(newsletterEmail)}`; }}>
                   <label className="flex min-w-0 flex-1 items-center gap-3 rounded-md border border-input bg-background px-4 shadow-sm"><Mail className="size-4 shrink-0"/><span className="sr-only">Email address</span><input type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} placeholder="Enter your email" className="h-11 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"/></label>
-                  <Button variant="brand" type="submit" className="h-11 px-5 font-bold">Subscribe</Button>
+                  <Button variant="brand" type="submit" className="h-11 w-full px-5 font-bold min-[360px]:w-auto">Subscribe</Button>
                 </form>
               </div>
             </div>
